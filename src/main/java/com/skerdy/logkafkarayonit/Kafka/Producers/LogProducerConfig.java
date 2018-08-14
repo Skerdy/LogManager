@@ -1,14 +1,10 @@
-package com.skerdy.logkafkarayonit.Kafka;
+package com.skerdy.logkafkarayonit.Kafka.Producers;
 
 
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.skerdy.logkafkarayonit.models.CustomDeserializer;
-import com.skerdy.logkafkarayonit.models.CustomSerializer;
+import com.skerdy.logkafkarayonit.Kafka.CustomSerialization.CustomSerializer;
 import com.skerdy.logkafkarayonit.models.Log;
-import com.skerdy.logkafkarayonit.models.LogSerializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

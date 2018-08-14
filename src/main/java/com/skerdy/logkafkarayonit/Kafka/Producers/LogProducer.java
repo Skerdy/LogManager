@@ -1,6 +1,5 @@
-package com.skerdy.logkafkarayonit.Kafka;
+package com.skerdy.logkafkarayonit.Kafka.Producers;
 
-import com.skerdy.logkafkarayonit.WebSocket.WebSocketController;
 import com.skerdy.logkafkarayonit.models.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

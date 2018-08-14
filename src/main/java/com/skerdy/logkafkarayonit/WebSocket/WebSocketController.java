@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,8 +35,9 @@ public class WebSocketController {
         this.template.convertAndSend("/chat", new SimpleDateFormat("HH:mm:ss").format(new Date()) + " - " + message);
     }
 
-    public  void sendLog(Log log){
 
+    @CrossOrigin(allowedHeaders = "Access-Control-Allow-Origin")
+    public  void sendLog(Log log){
         this.template.convertAndSend("/logEndPoint", log);
     }
 

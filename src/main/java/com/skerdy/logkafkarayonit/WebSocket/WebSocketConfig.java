@@ -13,9 +13,8 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        System.out.println(" U be Log Listener");
         registry.addEndpoint("/logListener")
-                .setAllowedOrigins("*", "http://localhost:4200")
+                .setAllowedOrigins( "http://localhost:4200")
         .withSockJS();
     }
 

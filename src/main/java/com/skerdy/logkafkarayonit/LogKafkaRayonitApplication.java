@@ -1,6 +1,6 @@
 package com.skerdy.logkafkarayonit;
 
-import com.skerdy.logkafkarayonit.Kafka.LogProducer;
+import com.skerdy.logkafkarayonit.Kafka.Producers.LogProducer;
 import com.skerdy.logkafkarayonit.LogTailer.LogTailListener;
 import com.skerdy.logkafkarayonit.LogTailer.LogTailListenerAdapter;
 import com.skerdy.logkafkarayonit.models.Log;
@@ -9,13 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.SimpleFormatter;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {
+		SecurityAutoConfiguration.class
+})
 public class LogKafkaRayonitApplication implements CommandLineRunner, LogTailListener {
 
 	private static Tailer tailer;

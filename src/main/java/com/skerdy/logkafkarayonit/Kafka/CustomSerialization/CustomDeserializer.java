@@ -1,10 +1,10 @@
-package com.skerdy.logkafkarayonit.models;
-
-import java.io.Serializable;
-import java.util.Map;
+package com.skerdy.logkafkarayonit.Kafka.CustomSerialization;
 
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.kafka.common.serialization.Deserializer;
+
+import java.io.Serializable;
+import java.util.Map;
 
 public class CustomDeserializer<T extends Serializable> implements Deserializer<T> {
 

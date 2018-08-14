@@ -1,25 +1,18 @@
-package com.skerdy.logkafkarayonit.Kafka;
+package com.skerdy.logkafkarayonit.Kafka.Consumers;
 
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.skerdy.logkafkarayonit.models.CustomDeserializer;
-import com.skerdy.logkafkarayonit.models.CustomSerializer;
+import com.skerdy.logkafkarayonit.Kafka.CustomSerialization.CustomDeserializer;
 import com.skerdy.logkafkarayonit.models.Log;
-import com.skerdy.logkafkarayonit.models.LogDeserializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.codec.json.Jackson2SmileDecoder;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
-import org.springframework.util.SerializationUtils;
 
 import java.util.HashMap;
 import java.util.Map;

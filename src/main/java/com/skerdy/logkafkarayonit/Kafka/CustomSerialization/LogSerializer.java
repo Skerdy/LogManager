@@ -1,6 +1,7 @@
-package com.skerdy.logkafkarayonit.models;
+package com.skerdy.logkafkarayonit.Kafka.CustomSerialization;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skerdy.logkafkarayonit.models.Log;
 import org.apache.kafka.common.serialization.Serializer;
 
 import java.util.Map;
