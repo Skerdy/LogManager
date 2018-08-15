@@ -2,6 +2,9 @@ import { Component, OnInit, NgModule, ViewChild  } from '@angular/core';
 //import { LogService} from './services/log.service';
 import { LogTableComponent, Log } from './components/log-table/log-table.component'
 
+import { ApiService } from  './services/api.service';
+
+
 import * as Stomp from 'stompjs';
 
 import * as socketJs from 'sockjs-client';
@@ -19,6 +22,7 @@ import * as $ from 'jquery';
 export class AppComponent implements OnInit {
 
   title = 'Log Manager';
+  logs;
 
   dataSource : Log[] =  [
   ];
@@ -30,16 +34,16 @@ export class AppComponent implements OnInit {
 
   @ViewChild('LogTable') logTable : LogTableComponent;
   
-  private serverUrl = 'http://localhost:8080/logListener';
+  private serverUrl = 'http://localhost:4200/server/logListener';
   private stompClient;
  
-  constructor(){
+  constructor(private  apiService:  ApiService){
    this.initializeWebSocketConnection();
   }
 
 
   ngOnInit() {
-      
+    this.getLogsFromFile();
   }
 
 
@@ -47,7 +51,34 @@ export class AppComponent implements OnInit {
     
   }
 
+  public  getLogsFromDb(){
+    this.apiService.getLogsFromDB().subscribe((data:  Array<object>) => {
+        this.logs  =  data;
+        console.log(data);
+    });
+  }
 
+    public  getLogsFromFile(){
+      this.apiService.getLogsFromFile().subscribe((data:  Array<object>) => {
+          this.logs  =  data;
+
+          for(let log  of this.dataSource){
+            this.dataSourceNew.push(log);
+          }
+        
+          
+          
+          for(var i = 0; i<data.length; i++) { 
+            let newLog : Log = {data: data[i].date, log_type: data[i].type, log_message : data[i].message };  
+            this.dataSourceNew.push(newLog);
+           
+          }
+          this.dataSource = this.dataSourceNew; 
+          this.dataSource = this.dataSourceNew;
+          this.dataSourceNew = [];   
+          console.log(data);
+      });
+    }
 
   initializeWebSocketConnection(){
     let ws =  socketJs(this.serverUrl);
@@ -55,8 +86,6 @@ export class AppComponent implements OnInit {
     let that = this;
     this.stompClient.connect({}, function(frame) {
       that.stompClient.subscribe("/logEndPoint", (message) => {
-        
-
         if(message.body) {
           console.log(message);
           let messageJson = JSON.parse(message.body);
@@ -82,6 +111,7 @@ export class AppComponent implements OnInit {
     this.stompClient.send("/app/send/message" , {}, message);
     $('#input').val('');
   }
+
 
  refreshDataSet(){
 

@@ -31,7 +31,7 @@ public class LogKafkaRayonitApplication implements CommandLineRunner, LogTailLis
 
 	@Override
 	public void run(String... strings) throws Exception {
-		tailer = Tailer.create(new File("C://Users//German//Desktop//log_file.txt"), new LogTailListenerAdapter(this)
+		tailer = Tailer.create(new File("C://Users//user//Desktop//log_file.txt"), new LogTailListenerAdapter(this)
 		,1000, true , true);
 	}
 
