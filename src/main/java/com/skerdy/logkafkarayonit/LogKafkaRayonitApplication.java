@@ -41,7 +41,6 @@ public class LogKafkaRayonitApplication implements CommandLineRunner, LogTailLis
 
 	@Override
 	public void onAddedNewLog(String message, Date date) {
-		System.out.println("U shtua rresht i ri!");
 		logProducer.send(LogUtils.createLogFromLogEntity(LogUtils.createLogFromLine(message)));
 	}
 }

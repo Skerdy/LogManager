@@ -24,8 +24,6 @@ public class LogProducer   {
     private String topic;
 
     public void send(Log log){
-        System.out.println("Para dergimit te log");
         logKafkaTemplate.send(topic, log);
-        System.out.println("Pas dergimit te log");
     }
 }

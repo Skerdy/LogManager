@@ -19,20 +19,13 @@ public class WebSocketController {
     @Autowired
     WebSocketController(SimpMessagingTemplate template){
         this.template = template;
-        this.template.convertAndSend("/chat", new SimpleDateFormat("HH:mm:ss").format(new Date()) + " - " + "mesazh random");
-        System.out.println("U dergua nje mesazh ne chat");
-
     }
 
     @MessageMapping("/send/message")
     public void onReceivedMesage (String message){
-        System.out.println("Erdhi nje mesazh nga front end");
-        this.template.convertAndSend("/chat", new SimpleDateFormat("HH:mm:ss").format(new Date()) + " - " + message);
     }
 
     public void sendMessage (String message){
-        System.out.println("U dergua nje mesazh nga consumeri me anen e websocket");
-        this.template.convertAndSend("/chat", new SimpleDateFormat("HH:mm:ss").format(new Date()) + " - " + message);
     }
 
 

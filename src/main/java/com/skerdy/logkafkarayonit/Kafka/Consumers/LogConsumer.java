@@ -30,6 +30,5 @@ public class LogConsumer {
     public void listen(@Payload Log log){
         this.webSocketController.sendLog(log);
        // this.logService.save(new LogEntity(log.getDate(), log.getType(), log.getMessage()));
-        System.out.println("Consumer got this LOG : " + log.getMessage());
     }
 }
