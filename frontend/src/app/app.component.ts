@@ -11,6 +11,13 @@ import * as socketJs from 'sockjs-client';
 
 import * as $ from 'jquery';
 
+ interface LogObject {
+  id : string ;
+  date : string ;
+  type : string ;
+  message : string ;
+}
+
 
 @Component({
   selector: 'app-root',
@@ -20,6 +27,8 @@ import * as $ from 'jquery';
 
 
 export class AppComponent implements OnInit {
+
+  
 
   title = 'Log Manager';
   logs;
@@ -52,14 +61,26 @@ export class AppComponent implements OnInit {
   }
 
   public  getLogsFromDb(){
-    this.apiService.getLogsFromDB().subscribe((data:  Array<object>) => {
+    this.apiService.getLogsFromDB().subscribe((data:  Array<LogObject>) => {
         this.logs  =  data;
+
+        for(let log  of this.dataSource){
+          this.dataSourceNew.push(log);
+        }
+        for(var i = 0; i<data.length; i++) { 
+          let newLog : Log = {data: data[i].date, log_type: data[i].type, log_message : data[i].message };  
+          this.dataSourceNew.push(newLog);
+         
+        }
+        this.dataSource = this.dataSourceNew; 
+        this.dataSource = this.dataSourceNew;
+        this.dataSourceNew = [];   
         console.log(data);
     });
   }
 
     public  getLogsFromFile(){
-      this.apiService.getLogsFromFile().subscribe((data:  Array<object>) => {
+      this.apiService.getLogsFromFile().subscribe((data:  Array<LogObject>) => {
           this.logs  =  data;
 
           for(let log  of this.dataSource){
@@ -111,6 +132,22 @@ export class AppComponent implements OnInit {
     this.stompClient.send("/app/send/message" , {}, message);
     $('#input').val('');
   }
+
+  clearPreviousData(){
+    this.dataSource = [];
+  }
+
+  onValChange(value){
+    console.log(value)
+    this.clearPreviousData();
+    if(value === "db"){
+    
+      this.getLogsFromDb();
+    }
+    else if (value ==="file"){
+      this.getLogsFromFile();
+    }
+}
 
 
  refreshDataSet(){

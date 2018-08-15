@@ -1,19 +1,18 @@
 package com.skerdy.logkafkarayonit.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
+@Table(name = "log")
 public class LogEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.TABLE)
     private Long id;
 
-    private String date;
+    private Date date;
     private String type;
     private String message;
 
@@ -21,17 +20,17 @@ public class LogEntity {
 
     }
 
-    public LogEntity(String date, String type, String message) {
+    public LogEntity(Date date, String type, String message) {
         this.date = date;
         this.type = type;
         this.message = message;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

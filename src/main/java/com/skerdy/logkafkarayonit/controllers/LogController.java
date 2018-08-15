@@ -2,12 +2,16 @@ package com.skerdy.logkafkarayonit.controllers;
 
 
 
+import com.skerdy.logkafkarayonit.LogKafkaRayonitApplication;
+import com.skerdy.logkafkarayonit.Utils.LogUtils;
 import com.skerdy.logkafkarayonit.models.LogEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RequestMapping("api/v1/logs")
@@ -15,18 +19,15 @@ import java.util.List;
 public class LogController {
 
     @GetMapping
-    public List<LogEntity> getAll(){
-        List<LogEntity> logList =  new ArrayList<>();
-        return logList;
+    public List<LogEntity> getAll() throws FileNotFoundException {
+        return getAllFiles();
     }
 
 
     @GetMapping("/file")
-    public List<LogEntity> getAllFiles(){
+    public List<LogEntity> getAllFiles() throws FileNotFoundException {
         List<LogEntity> logEntities = new ArrayList<>();
-        logEntities.add(new LogEntity("data 1", "type 1", "mesazhi i logut"));
-        logEntities.add(new LogEntity("data 2", "type 2", "mesazhi i logut 2"));
-        return logEntities;
+        return LogUtils.getAllLogsFromFile(LogKafkaRayonitApplication.FILE_PATH);
     }
 
 }

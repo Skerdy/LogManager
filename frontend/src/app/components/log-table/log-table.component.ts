@@ -54,7 +54,7 @@ export class LogTableComponent implements OnInit {
         case 'Error':
         color = 'red';
         break;
-        case 'warning':
+        case 'Warning':
         color = 'orange';
         break;
         default : 

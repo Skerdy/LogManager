@@ -1,25 +1,17 @@
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <div class="chat-container">
-    <div class="chat">
-      <div class="message"></div>
-    </div>
+
+<nav class="navbar-header">
+  <div class="flex-spacer" style="text-align:center">
+    <h1 style="color: white">
+      Welcome to {{title}}!
+    </h1>
   </div>
+</nav>
+<div class="justify-content-center" class="d-flex" style="margin-top: 20px ">
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style" style="margin:auto">
+  <mat-button-toggle value="db" (change)="onValChange($event.value)">Database</mat-button-toggle>
+  <mat-button-toggle value="file"(change)="onValChange($event.value)">File</mat-button-toggle>
+</mat-button-toggle-group>
 </div>
-
-<!--
-<div class="footer">
-  <div class="send-button">
-
-    <button class="send" (click)="sendMessage(input.value)"> Send
-    </button>
-    <input  id="input" type="text" #input>
-  </div>
-</div>
--->
-
 
 
 <div class="tabela">

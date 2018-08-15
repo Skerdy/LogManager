@@ -9,11 +9,15 @@ public class Log implements Serializable {
     public static final String WARNING = "Warning";
     public static final String UNKNOWN = "Unknown";
 
-    private String date;
+    private Date date;
     private String type;
     private String message;
 
-    public Log(String date, String type, String message) {
+    public Log(){
+
+    }
+
+    public Log(Date date, String type, String message) {
         this.date = date;
         this.type = type;
         this.message = message;
@@ -21,11 +25,11 @@ public class Log implements Serializable {
 
 
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

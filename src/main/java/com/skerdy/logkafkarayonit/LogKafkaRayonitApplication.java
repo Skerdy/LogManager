@@ -3,7 +3,9 @@ package com.skerdy.logkafkarayonit;
 import com.skerdy.logkafkarayonit.Kafka.Producers.LogProducer;
 import com.skerdy.logkafkarayonit.LogTailer.LogTailListener;
 import com.skerdy.logkafkarayonit.LogTailer.LogTailListenerAdapter;
+import com.skerdy.logkafkarayonit.Utils.LogUtils;
 import com.skerdy.logkafkarayonit.models.Log;
+import com.skerdy.logkafkarayonit.models.LogEntity;
 import org.apache.commons.io.input.Tailer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -21,6 +23,7 @@ import java.util.Date;
 public class LogKafkaRayonitApplication implements CommandLineRunner, LogTailListener {
 
 	private static Tailer tailer;
+	public static String FILE_PATH = "C://Users//German//Desktop//log_file.txt";
 
 	public static void main(String[] args)  {
 		SpringApplication.run(LogKafkaRayonitApplication.class, args);
@@ -31,13 +34,14 @@ public class LogKafkaRayonitApplication implements CommandLineRunner, LogTailLis
 
 	@Override
 	public void run(String... strings) throws Exception {
-		tailer = Tailer.create(new File("C://Users//user//Desktop//log_file.txt"), new LogTailListenerAdapter(this)
+		tailer = Tailer.create(new File(FILE_PATH), new LogTailListenerAdapter(this)
 		,1000, true , true);
+
 	}
 
 	@Override
 	public void onAddedNewLog(String message, Date date) {
 		System.out.println("U shtua rresht i ri!");
-		logProducer.send(new Log(new SimpleDateFormat("HH:mm:ss").format(date), Log.ERROR, message));
+		logProducer.send(LogUtils.createLogFromLogEntity(LogUtils.createLogFromLine(message)));
 	}
 }
