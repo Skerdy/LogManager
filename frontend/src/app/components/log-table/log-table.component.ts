@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild , Input, OnChanges, SimpleChanges  } from '@angular/core';
-
 import {MatTableDataSource} from '@angular/material';
-import { NgModel } from '../../../../node_modules/@angular/forms';
 
 export interface Log {
   data: string;

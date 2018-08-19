@@ -4,19 +4,17 @@
 
 <table mat-table  [dataSource] ="matTabledataSource" class="mat-elevation-z8">
 
-  <!-- Position Column -->
+  
   <ng-container matColumnDef="data">
     <th mat-header-cell *matHeaderCellDef> Data </th>
     <td mat-cell *matCellDef="let element"> {{element.data}} </td>
   </ng-container>
 
-  <!-- Name Column -->
   <ng-container matColumnDef="log_type">
     <th mat-header-cell *matHeaderCellDef> Type </th>
     <td mat-cell *matCellDef="let element" [style.color]="defineColor(element.log_type)">  {{element.log_type}} </td>
   </ng-container>
 
-  <!-- Weight Column -->
   <ng-container matColumnDef="log_message">
     <th mat-header-cell *matHeaderCellDef> Message </th>
     <td mat-cell *matCellDef="let element"> {{element.log_message}} </td>

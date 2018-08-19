@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { LogService } from './services/log.service';
 import {    MatButtonModule,
   MatCardModule,
   MatPaginatorModule,

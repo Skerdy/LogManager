@@ -21,14 +21,6 @@ public class WebSocketController {
         this.template = template;
     }
 
-    @MessageMapping("/send/message")
-    public void onReceivedMesage (String message){
-    }
-
-    public void sendMessage (String message){
-    }
-
-
     @CrossOrigin(allowedHeaders = "Access-Control-Allow-Origin")
     public  void sendLog(Log log){
         this.template.convertAndSend("/logEndPoint", log);

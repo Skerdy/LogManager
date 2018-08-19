@@ -20,6 +20,7 @@ public class LogController {
 
     @GetMapping
     public List<LogEntity> getAll() throws FileNotFoundException {
+        //per momentin funskioni merr nga db esht caktivizuar pasi problemit te konfigurimit te SQLite
         return getAllFiles();
     }
 

@@ -1,5 +1,4 @@
 import { Component, OnInit, NgModule, ViewChild  } from '@angular/core';
-//import { LogService} from './services/log.service';
 import { LogTableComponent, Log } from './components/log-table/log-table.component'
 
 import { ApiService } from  './services/api.service';
@@ -9,7 +8,6 @@ import * as Stomp from 'stompjs';
 
 import * as socketJs from 'sockjs-client';
 
-import * as $ from 'jquery';
 
  interface LogObject {
   id : string ;
@@ -121,17 +119,13 @@ export class AppComponent implements OnInit {
           that.dataSource = that.dataSourceNew;
           that.dataSourceNew = [];
           console.log(that.dataSource.length);
-          //$(".chat").append("<div class='message'>"+message.body+"</div>")
           console.log(message.body);
         }
       });
     });
   }
 
-  sendMessage(message){
-    this.stompClient.send("/app/send/message" , {}, message);
-    $('#input').val('');
-  }
+
 
   clearPreviousData(){
     this.dataSource = [];
@@ -148,18 +142,6 @@ export class AppComponent implements OnInit {
       this.getLogsFromFile();
     }
 }
-
-
- refreshDataSet(){
-
-  console.log( this.dataSource);
-  console.log( this.dataSourceNew);
-
-    //this.logTable.refreshDataSet(this.dataSourceNew);
-    //this.dataSource = [
-   //   {data: 12, log_type: 'dfaksd', log_message: 12}
-   // ]
-  }
 }
 
 

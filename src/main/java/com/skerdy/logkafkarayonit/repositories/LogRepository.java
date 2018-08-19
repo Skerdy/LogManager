@@ -8,6 +8,4 @@ import javax.swing.text.html.parser.Entity;
 
 public interface LogRepository extends JpaRepository<LogEntity, Long > {
 
-
-
 }
